@@ -17,6 +17,8 @@ const GithubContext=React.createContext();
     const [isLoading,setIsLoading]=useState(false)
     const [requests,setRequest]=useState(0);
     const [error,setError]=useState({show:false,msg:''})
+    const [isUserLoggedIn,setIsUserLoggedIn]=useState(false);
+    const [loggedUser, setLoggedUser] = useState([])
     
     const searchGithubUser=async(user)=>{
        toggleError();
@@ -90,6 +92,11 @@ function toggleError(show=false,msg=''){
             requests,
             error,
             searchGithubUser,
+            setGithubUser,
+            loggedUser,
+            setLoggedUser,
+            isUserLoggedIn,
+            setIsUserLoggedIn,
             isLoading}}>
             {children}
      </GithubContext.Provider>

@@ -2,15 +2,15 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
 import loginImg from '../images/login-img.svg';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
-  const {loginWithRedirect}=useAuth0()
   return <Wrapper>
     <div className='container'>
 <img src={loginImg} alt='github user'/>
 <h1>github User</h1>
-<button className='btn' onClick={loginWithRedirect}>login/sign up</button>
-    </div>
+<Link to="/loginUser" className='btn'>Login/Sign up</Link>
+</div>
   </Wrapper>;
 };
 const Wrapper = styled.section`

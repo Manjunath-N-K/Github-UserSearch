@@ -12,14 +12,14 @@ import { Auth0Provider } from '@auth0/auth0-react';
 ReactDOM.render(
  
   <React.StrictMode>
-    <Auth0Provider domain="dev-ufizw99o.us.auth0.com"
+    {/* <Auth0Provider domain="dev-ufizw99o.us.auth0.com"
           clientId="r0nfirnikTB7tK8d9CCluKNJnPHLZUGp"
           redirectUri={window.location.origin}
-          cacheLocation='localstorage'>
+          cacheLocation='localstorage'> */}
      <GithubProvider>
-     <App />
-  </GithubProvider>
-   </Auth0Provider>
+        <App />
+     </GithubProvider>
+   {/* </Auth0Provider> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

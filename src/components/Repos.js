@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { GithubContext } from '../context/context';
 import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts';
 const Repos = () => {
-  const {repos}=React.useContext(GithubContext);
+  const {repos,loggedUser}=React.useContext(GithubContext);
  
 
   const languages=repos.reduce((total,item)=>{
@@ -46,19 +46,28 @@ stars=Object.values(stars).slice(-5).reverse();
 forks=Object.values(forks).slice(-5).reverse();
  
 
-  return (
-  <section className='section'>
-    <Wrapper className='section-center'>
-<Pie3D data={mostUsed} />
-<div>
-  <Column3D data={stars} />
-</div>
-<Doughnut2D data={mostPopular}/>
-<div>
-  <Bar3D data={forks} />
-</div>
-    </Wrapper>
-  </section>
+  return ( 
+    loggedUser.active_module !== "EMPLOYEE" ? 
+          <section className='section'>
+            <Wrapper className='section-center'>
+        <Pie3D data={mostUsed} />
+        <div>
+          <Column3D data={stars} />
+        </div>
+        <Doughnut2D data={mostPopular}/>
+        <div>
+          <Bar3D data={forks} />
+        </div>
+            </Wrapper>
+          </section>
+          :
+
+           <section className='section '>
+            <Wrapper className='section-center'>
+                <div className='heading'>Please Subscribe to view additional Features</div>
+            </Wrapper>
+          </section>
+    
   
     )
 };

@@ -3,7 +3,7 @@ import { Info, Repos, User, Search, Navbar } from '../components';
 import loadingImage from '../images/preloader.gif';
 import { GithubContext } from '../context/context';
 const Dashboard = () => {
-  const {isLoading}=React.useContext(GithubContext)
+  const {isLoading,loggedUser}=React.useContext(GithubContext)
   if(isLoading)
   {
     return <main>
@@ -15,7 +15,9 @@ const Dashboard = () => {
   return (
     <main>
       <Navbar />
-      <Search />
+      {
+        loggedUser.active_module == "ADMIN" &&  <Search /> 
+      }
       <Info />
       <User />
       <Repos />
