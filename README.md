@@ -2,6 +2,8 @@
 
 ### if u find some redundancy it is bcz of my old project
 
+### project info - A github users Search engine with pictorial information of their posts/projects
+
 ### Project Setup
 
 - Clone the project from Github URL
@@ -11,14 +13,15 @@
 - npm audit fix --force
 - npm start
 - if there is any error after npm start
-- open package.json and inside scripts - replace "start": "react-scripts start" - with
+- open package.json and inside scripts -
+  replace "start": "react-scripts start" - with "react-scripts --openssl-legacy-provider start"
 
 - once the code is compiled successfully
 - open localhost:3000
 - login with 3 credentials
-  - john@gmail.com (EMPLOYEE)
-  - amit@marvels.com (USER)
-  - rohit@finkraft.com (ADMIN)
+  - john@gmail.com (EMPLOYEE) - test123 - Minimum dashboard access
+  - amit@marvels.com (USER) - test123 - Additional features with No search engine
+  - rohit@finkraft.com (ADMIN)- test123 - Complete dashboard with Search engine
 
 ## Additional project informations
 
