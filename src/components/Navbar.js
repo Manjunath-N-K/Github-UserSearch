@@ -1,45 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
-import { GithubContext } from '../context/context';
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-
 
 const Navbar = () => {
   
-  // const {isAuthenticated,loginWithRedirect,logout,user,isLoading}=useAuth0();
-  const {demo,loggedUser,setIsUserLoggedIn}=React.useContext(GithubContext)
-  const [user, setUser] = useState(loggedUser);
-  const isUser=true;
-
-  let history = useHistory();
-
-  const logout = (e)=>{
-    e.preventDefault();
-    setIsUserLoggedIn(false);
-    history.push("/");
-  }
-
-  return <Wrapper >
-    {isUser && user.picture && <img src={user.picture} alt={user.name}></img>
+  const {isAuthenticated,loginWithRedirect,logout,user,isLoading}=useAuth0();
+  const isUser=isAuthenticated && user;
+  
+  return <Wrapper>
+    {
+    isUser && user.picture && <img src={user.picture} alt='User'></img>
     }
     {
-      isUser && user.name && <h4>Welcome ,<strong>{user.name.toUpperCase()} - {loggedUser.active_module} </strong> </h4>
+      isUser && user.name && <h4>Welcome ,<strong>{user.name.toUpperCase()}</strong></h4>
     }
 
-    {isUser ? <button onClick={logout}>
-Logout
-    </button>:<button>
-Login
-    </button>} 
+    {isUser ? <button onClick={()=>{logout({returnTo:window.location.origin})}}>
+   Logout
+    </button>:<button onClick={loginWithRedirect}>
+   Login
+    </button>}
     
     
   </Wrapper>;
 };
 
 const Wrapper = styled.nav`
-  display:flex;
   padding: 1.5rem;
   margin-bottom: 4rem;
   background: var(--clr-white);

@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { GithubContext } from '../context/context';
-import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts';
+import {  Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts';
+
 const Repos = () => {
-  const {repos,loggedUser}=React.useContext(GithubContext);
- 
+  const {repos}=React.useContext(GithubContext);
 
   const languages=repos.reduce((total,item)=>{
     const {language,stargazers_count}=item;
@@ -20,6 +21,7 @@ const Repos = () => {
     return total;
   },{})
   
+//most used languages in the repository  
  const mostUsed=Object.values(languages).sort((a,b)=>{
 return b.value-a.value;
  }).slice(0,5);
@@ -32,7 +34,6 @@ return b.stars-a.stars;
 }).slice(0,5);
 
 //stars,forks
-
 let {stars,forks}=repos.reduce((total,item)=>{
   const {stargazers_count,name,forks}=item;
   total.stars[stargazers_count]={label:name,value:stargazers_count}
@@ -46,28 +47,19 @@ stars=Object.values(stars).slice(-5).reverse();
 forks=Object.values(forks).slice(-5).reverse();
  
 
-  return ( 
-    loggedUser.active_module !== "EMPLOYEE" ? 
-          <section className='section'>
-            <Wrapper className='section-center'>
+  return (
+  <section className='section'>
+    <Wrapper className='section-center'>
         <Pie3D data={mostUsed} />
         <div>
           <Column3D data={stars} />
         </div>
         <Doughnut2D data={mostPopular}/>
         <div>
-          <Bar3D data={forks} />
-        </div>
-            </Wrapper>
-          </section>
-          :
-
-           <section className='section '>
-            <Wrapper className='section-center'>
-                <div className='heading'>Please Subscribe to view additional Features</div>
-            </Wrapper>
-          </section>
-    
+        <Bar3D data={forks} />
+      </div>
+    </Wrapper>
+  </section>
   
     )
 };

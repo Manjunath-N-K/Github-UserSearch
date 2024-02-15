@@ -1,29 +1,4 @@
-### Due to time constraint I have enahanced a previous dashboard which i had created using auth0 authentication - u might find it commented
-
-### if u find some redundancy it is bcz of my old project
-
-### project info - A github users Search engine with pictorial information of their posts/projects
-
-### Project Setup
-
-- Clone the project from Github URL
-- Save in a folder - open the file
-- open the terminal and enter following commands
-- npm install
-- npm audit fix --force
-- npm start
-- if there is any error after npm start
-- open package.json and inside scripts -
-  replace "start": "react-scripts start" - with "react-scripts --openssl-legacy-provider start"
-
-- once the code is compiled successfully
-- open localhost:3000
-- login with 3 credentials
-  - john@gmail.com (EMPLOYEE) - test123 - Minimum dashboard access
-  - amit@marvels.com (USER) - test123 - Additional features with No search engine
-  - rohit@finkraft.com (ADMIN)- test123 - Complete dashboard with Search engine
-
-## Additional project informations
+## Starter Project
 
 - css provided (global styles, styled components)
 - folders/files already setup
@@ -85,3 +60,56 @@ version used - "react-router-dom": "^5.2.0",
 - [First React Chart](https://www.fusioncharts.com/dev/getting-started/react/your-first-chart-using-react)
 - [List Of Charts](https://www.fusioncharts.com/dev/chart-guide/list-of-charts)
 - [Themes](https://www.fusioncharts.com/dev/themes/introduction-to-themes)
+
+## Auth0
+
+- [Auth0 - Main Docs](https://auth0.com/)
+
+- Create Application
+- Choose : Single Page Web Applications
+- Choose : React
+- Go to Settings Tab
+- Copy/Paste Domain, ClientID - can be public (or use .env)
+- Add Domain -
+  for now http://localhost:3000 (DON'T COPY PASTE FROM URL BAR)
+
+  - Allowed Callback URLs
+  - Allowed Logout URLs
+  - Allowed Web Origins
+  - SAVE CHANGES!!!!!!!!!!!!!!!
+
+- Connections
+  email,social
+
+- [React SDK Docs](https://auth0.com/docs/libraries/auth0-react)
+- [REACT SDK API Docs](https://auth0.github.io/auth0-react/)
+
+## Deployment
+
+[Netlify](https://www.netlify.com/)
+
+## Additional Info
+
+#### Redirects with react-router-dom
+
+In order for routing to work on netlify, redirects was added to the public folder
+
+- \_redirects file in public
+
+```
+
+/*    /index.html   200
+
+```
+
+[Redirects Blog Post](https://dev.to/dance2die/page-not-found-on-netlify-with-react-router-58mc)
+
+#### Warnings and create-react-app
+
+package.json
+
+```js
+"build": "CI= react-scripts build",
+```
+
+[create-react-app Warning Fix Blog Post](https://community.netlify.com/t/how-to-fix-build-failures-with-create-react-app-in-production/17752)

@@ -9,17 +9,20 @@ import { Auth0Provider } from '@auth0/auth0-react';
 //domain dev-ufizw99o.us.auth0.com
 //client id r0nfirnikTB7tK8d9CCluKNJnPHLZUGp
 
+//trail version for meeting
+//domain dev-21je-vbx.us.auth0.com
+//client pSOVEITzJ3WJIVTJQtPrIcyN2PdhJ5nm
+
 ReactDOM.render(
- 
   <React.StrictMode>
-    {/* <Auth0Provider domain="dev-ufizw99o.us.auth0.com"
-          clientId="r0nfirnikTB7tK8d9CCluKNJnPHLZUGp"
-          redirectUri={window.location.origin}
-          cacheLocation='localstorage'> */}
-     <GithubProvider>
-        <App />
-     </GithubProvider>
-   {/* </Auth0Provider> */}
+      <Auth0Provider domain="dev-ufizw99o.us.auth0.com"
+            clientId="r0nfirnikTB7tK8d9CCluKNJnPHLZUGp"
+            redirectUri={window.location.origin}
+            cacheLocation='localstorage'>
+            <GithubProvider>
+                <App />
+          </GithubProvider>
+    </Auth0Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

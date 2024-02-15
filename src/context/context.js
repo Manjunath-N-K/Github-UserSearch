@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import mockUser from './mockData.js/mockUser';
 import mockRepos from './mockData.js/mockRepos';
 import mockFollowers from './mockData.js/mockFollowers';
-import axios from 'axios';
+
 import Followers from '../components/Followers';
 
-const rootUrl = 'https://api.github.com';
+ const rootUrl = 'https://api.github.com';
+
 
 const GithubContext=React.createContext();
 //acess to provider and consumer
-
+ 
  const GithubProvider=({children})=>{
+
     const [GithubUser,setGithubUser]=useState(mockUser);
     const [repos,setRepos]=useState(mockRepos);
     const [followers,setFollowers]=useState(mockFollowers);
     const [isLoading,setIsLoading]=useState(false)
     const [requests,setRequest]=useState(0);
     const [error,setError]=useState({show:false,msg:''})
-    const [isUserLoggedIn,setIsUserLoggedIn]=useState(false);
-    const [loggedUser, setLoggedUser] = useState([])
     
     const searchGithubUser=async(user)=>{
        toggleError();
@@ -27,10 +29,10 @@ const GithubContext=React.createContext();
        .catch((err)=>console.log(err));
        
        if(response){
-          
-          console.log(response.data);
+         // console.log(response.data);
            setGithubUser(response.data);
            const {login,followers_url}=response.data;
+          
 // axios(`${rootUrl}/users/${login}/repos?per_page=100`).then((response)=>{
 //    setRepos(response.data)
 // });
@@ -61,19 +63,13 @@ else{
        setIsLoading(false);
     } 
 
-
-
-
-
-
-
-//check rate
+//check api request limit rate
 const checkRequest=()=>{
    axios(`${rootUrl}/rate_limit`).then(({data})=>{
   let {rate:{remaining},}=data;
   setRequest(remaining);
   if(remaining===0){
-     //throw eerror
+     //throw error
 toggleError(true,'sorry, u have exceeded ur hourly limit!!');
   }
    }).catch((err)=>console.log(err))
@@ -92,11 +88,6 @@ function toggleError(show=false,msg=''){
             requests,
             error,
             searchGithubUser,
-            setGithubUser,
-            loggedUser,
-            setLoggedUser,
-            isUserLoggedIn,
-            setIsUserLoggedIn,
             isLoading}}>
             {children}
      </GithubContext.Provider>
